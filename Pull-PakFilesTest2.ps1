@@ -15,12 +15,12 @@ if (-not (Test-Path -Path $sourcepath)) {
     }
     $ExcludeFolders = "output|pictures|photos|Screenshot"
 $outputfolder = "$sourcepath\Output"
-# Getting the folder names, with any luck. Should assign them as "foldername" $foldername = 
-Get-ChildItem $sourcepath -directory | Where-Object Fullname -notmatch $ExcludeFolders # !!!why does this line still show me the output folder, anyway?!!!
+# Getting the folder names, with any luck. Should assign them as "foldername" 
+$foldername = Get-ChildItem $sourcepath -directory | Where-Object Fullname -notmatch $ExcludeFolders # !!!why does this line still show me the output folder, anyway?!!!
 #I should also get the actual contents. "contents"
-Get-ChildItem $sourcepath -recurse -exclude $outputfolder
+$contents = Get-ChildItem $sourcepath -recurse -exclude $outputfolder
 #Now to extract the numbers from this list. Will be "modid"
 Get-ChildItem $sourcepath -Exclude Output | Tee-Object -variable modid
 $composite = write-output $outputfolder\$modid+'.pak'
 #maybe this last part will work.
-Write-Host Copy-Item $ProcessTheseFiles -Destination $outputfolder -force
+Write-Host Copy-Item $contents -Destination $outputfolder -force
