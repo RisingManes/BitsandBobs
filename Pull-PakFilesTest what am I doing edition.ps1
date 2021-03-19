@@ -6,7 +6,7 @@ $outputfolder = "$sourcepath\Output"
 Get-ChildItem -path $sourcepath -exclude $outputfolder| Tee-Object  -Variable directory 
 # contents: what's inside the actual mod folders.
 Get-ChildItem -path $directory | Tee-Object -variable contents
-get-childitem -name $sourcepath -recurse | tee-object -Variable modid
+get-childitem -name $sourcepath | tee-object -Variable modid
 # Now to extract the numbers from this list. Will be "modid" 
 #maybe this last part will work.
 Write-Host $outputfolder+'\'+$modid
